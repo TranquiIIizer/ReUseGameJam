@@ -12,7 +12,7 @@ public class ScreenShotCapturer : MonoBehaviour
     private Texture2D _screenCapture;
     [SerializeField] private GameObject _cameraUI;
     [SerializeField] private GameObject _photoContainer;
-    [SerializeField] private List<Image> images = new List<Image>();
+    [SerializeField] private List<Image> images = new();
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class ScreenShotCapturer : MonoBehaviour
     {
         _cameraUI.SetActive(false);
         yield return new WaitForEndOfFrame();
-        Rect regionToRead = new Rect(0, 0, Screen.width, Screen.height);
+        Rect regionToRead = new (0, 0, Screen.width, Screen.height);
 
         _screenCapture.ReadPixels(regionToRead, 0, 0, false);
         _screenCapture.Apply();
@@ -40,7 +40,7 @@ public class ScreenShotCapturer : MonoBehaviour
 
     private void SavePhoto()
     {
-        Texture2D newTexture = new Texture2D(_screenCapture.width, _screenCapture.height, _screenCapture.format, false);
+        Texture2D newTexture = new (_screenCapture.width, _screenCapture.height, _screenCapture.format, false);
         newTexture.SetPixels(_screenCapture.GetPixels());
         newTexture.Apply();
 
