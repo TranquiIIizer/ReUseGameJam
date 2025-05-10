@@ -6,7 +6,7 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] private Transform _controlPointPosition;
     [SerializeField] private float _checkRange;
     [SerializeField] private LayerMask _ground;
-    [SerializeField] private float _movementSpeed;
+    public float movementSpeed;
 
     private void FixedUpdate()
     {
@@ -23,7 +23,7 @@ public class VehicleMovement : MonoBehaviour
 
     public void MoveForward()
     {
-        transform.position += (_movementSpeed * -transform.up) * Time.fixedDeltaTime;
+        transform.position += (movementSpeed * -transform.up) * Time.fixedDeltaTime;
     }
 
     private void OnDrawGizmos()
