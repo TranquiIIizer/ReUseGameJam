@@ -19,7 +19,6 @@ public class ScreenShotCapturer : MonoBehaviour
         _screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
         CameraController.PictureTakenEvent += CapturePhoto;
         images.AddRange(_photoContainer.GetComponentsInChildren<Image>());
-        images.Remove(images[0]);
     }
 
     public void CapturePhoto(CameraController cameraController)
@@ -36,13 +35,27 @@ public class ScreenShotCapturer : MonoBehaviour
         _screenCapture.ReadPixels(regionToRead, 0, 0, false);
         _screenCapture.Apply();
 
-        ShowPhoto();
+        SavePhoto();
     }
 
-    private void ShowPhoto()
+    private void SavePhoto()
     {
-        Sprite photoSprite = Sprite.Create(_screenCapture, new Rect(0.0f, 0.0f, _screenCapture.width, _screenCapture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        Texture2D newTexture = new Texture2D(_screenCapture.width, _screenCapture.height, _screenCapture.format, false);
+        newTexture.SetPixels(_screenCapture.GetPixels());
+        newTexture.Apply();
+
+        Sprite photoSprite = Sprite.Create(newTexture, new Rect(0.0f, 0.0f, newTexture.width, newTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
         _photoDisplayArea.sprite = photoSprite;
+
+        foreach (Image image in images)
+        {
+            if (image.sprite == null)
+            {
+                image.sprite = photoSprite;
+                break;
+            }
+        }
+
         _cameraUI.SetActive(true);
     }
 
