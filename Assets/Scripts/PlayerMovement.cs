@@ -1,11 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private List<Transform> _endPoints;
     InputAction moveAction;
-    [SerializeField] private bool moveOnZAxis;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private bool _moveOnZAxis;
+    [SerializeField] private float _moveSpeed;
 
     private void Start()
     {
@@ -14,15 +16,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector2 moveValue = moveAction.ReadValue<Vector2>();
+        Vector2 moveValue = -moveAction.ReadValue<Vector2>();
         Debug.Log(moveValue);
-        if (moveOnZAxis)
+        if (_moveOnZAxis)
         {
-            transform.position += new Vector3(moveValue.x, 0, 0) * Time.deltaTime;
+            transform.position += new Vector3(moveValue.x * _moveSpeed, 0, 0) * Time.deltaTime;
         }
         else
         {
-            transform.position += new Vector3(0, 0, moveValue.x) * Time.deltaTime;
+            transform.position += new Vector3(0, 0, moveValue.x * _moveSpeed) * Time.deltaTime;
         }
     }
 }

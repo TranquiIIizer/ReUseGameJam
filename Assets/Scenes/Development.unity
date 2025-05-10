@@ -271,8 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a0c0df5aaa51049b1335009d276fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOnZAxis: 0
-  moveSpeed: 0
+  _endPoints: []
+  _moveOnZAxis: 0
+  _moveSpeed: 1
 --- !u!65 &741416182
 BoxCollider:
   m_ObjectHideFlags: 0
