@@ -31,12 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Dashed()
     {
-        Debug.Log("Dashed");
         _moveSpeed = _baseSpeed * 3;
-        Debug.Log(_moveSpeed);
         yield return new WaitForSeconds(_dashDuration);
         _moveSpeed = _baseSpeed;
-        Debug.Log(_moveSpeed);
     }
 
     private void FixedUpdate()

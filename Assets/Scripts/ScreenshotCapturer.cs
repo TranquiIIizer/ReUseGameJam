@@ -8,6 +8,6 @@ public class ScreenShotCapturer : MonoBehaviour
 
     private void Update()
     {
-        
+         
     }
 }
