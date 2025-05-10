@@ -1,21 +1,37 @@
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class VehicleMovement : MonoBehaviour
 {
     [SerializeField] private Transform _controlPointPosition;
     [SerializeField] private float _checkRange;
-    [SerializeField] private LayerMask ground;
+    [SerializeField] private LayerMask _ground;
+    [SerializeField] private float _movementSpeed;
 
     private void FixedUpdate()
     {
-        var pos = _controlPointPosition.localPosition;
-        bool isTouchingGround = Physics.Raycast(pos, new Vector3(pos.x, pos.y, pos.z), ground);
+        MoveForward();
+
+        Vector3 origin = _controlPointPosition.position;
+        Vector3 direction = _controlPointPosition.forward;
+        bool isTouchingGround = Physics.Raycast(origin, direction, _checkRange, _ground);
+        Debug.Log(isTouchingGround);
+        if (!isTouchingGround)
+        {
+            transform.Rotate(Vector3.left, 1f, Space.Self);
+        }
+    }
+
+    public void MoveForward()
+    {
+        transform.position += (_movementSpeed * -transform.up) * Time.fixedDeltaTime;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        var pos = _controlPointPosition.localPosition;
-        Gizmos.DrawLine(pos, new Vector3(pos.x, pos.y-_checkRange, pos.z));
+        Vector3 pos = _controlPointPosition.position;
+        Vector3 direction = _controlPointPosition.forward * _checkRange;
+        Gizmos.DrawLine(pos, pos + direction);
     }
 }
