@@ -15,7 +15,6 @@ public class VehicleMovement : MonoBehaviour
         Vector3 origin = _controlPointPosition.position;
         Vector3 direction = _controlPointPosition.forward;
         bool isTouchingGround = Physics.Raycast(origin, direction, _checkRange, _ground);
-        Debug.Log(isTouchingGround);
         if (!isTouchingGround)
         {
             transform.Rotate(Vector3.left, 1f, Space.Self);

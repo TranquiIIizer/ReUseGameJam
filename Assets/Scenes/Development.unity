@@ -813,6 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mouseSensitivity: 2
+  timeToNextPhoto: 3
   _playerTransform: {fileID: 741416185}
 --- !u!1 &1764780758
 GameObject:
