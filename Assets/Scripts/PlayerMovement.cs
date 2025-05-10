@@ -1,30 +1,50 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private List<Transform> _endPoints;
-    InputAction moveAction;
-    [SerializeField] private bool _moveOnZAxis;
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _dashCooldown = 0.75f;
+    [SerializeField] private float _dashDuration = 0.3f;
+    private float _timer;
+    [SerializeField] private float _baseSpeed;
+    private float _moveSpeed;
+
+    private Rigidbody _rb;
 
     private void Start()
     {
-        moveAction = InputSystem.actions.FindAction("Move");
+        _rb = GetComponent<Rigidbody>();
+        _moveSpeed = _baseSpeed;
     }
 
     private void Update()
     {
-        Vector2 moveValue = -moveAction.ReadValue<Vector2>();
-        Debug.Log(moveValue);
-        if (_moveOnZAxis)
+        _timer -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _timer < 0)
         {
-            transform.position += new Vector3(moveValue.x * _moveSpeed, 0, 0) * Time.deltaTime;
+            _timer = _dashCooldown;
+            StartCoroutine(Dashed());
         }
-        else
-        {
-            transform.position += new Vector3(0, 0, moveValue.x * _moveSpeed) * Time.deltaTime;
-        }
+    }
+
+    IEnumerator Dashed()
+    {
+        Debug.Log("Dashed");
+        _moveSpeed = _baseSpeed * 3;
+        Debug.Log(_moveSpeed);
+        yield return new WaitForSeconds(_dashDuration);
+        _moveSpeed = _baseSpeed;
+        Debug.Log(_moveSpeed);
+    }
+
+    private void FixedUpdate()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(horizontal, 0f, vertical) * _moveSpeed;
+        _rb.linearVelocity = movement;
     }
 }
