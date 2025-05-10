@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -9,6 +10,8 @@ public class CameraController : MonoBehaviour
 
     private Vector2 _lookPos;
     private float _timeSinceLastMovement;
+
+    public static Action<CameraController> PictureTakenEvent; 
 
     private void Start()
     {
@@ -46,6 +49,7 @@ public class CameraController : MonoBehaviour
             if (_timeSinceLastMovement >= secondsToPhotoShot)
             {
                 Debug.Log("Screenshot");
+                PictureTakenEvent?.Invoke(this);
                 _timeSinceLastMovement = 0f;
             }
         }
