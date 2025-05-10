@@ -20,6 +20,6 @@ public class CameraController : MonoBehaviour
         _lookPos.x = Mathf.Clamp(_lookPos.x, -45f, 45f);
         _lookPos.y = Mathf.Clamp(_lookPos.y, -45f, 45f);
 
-        transform.rotation = Quaternion.Euler(-_lookPos.y, -_lookPos.x, 0f);
+        transform.rotation = Quaternion.Euler(-_lookPos.y, _lookPos.x, 0f);
     }
 }
