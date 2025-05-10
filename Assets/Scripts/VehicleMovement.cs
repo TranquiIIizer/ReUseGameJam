@@ -17,7 +17,7 @@ public class VehicleMovement : MonoBehaviour
         bool isTouchingGround = Physics.Raycast(origin, direction, _checkRange, _ground);
         if (!isTouchingGround)
         {
-            transform.Rotate(Vector3.left, 1f, Space.Self);
+            transform.Rotate(Vector3.left, 0.5f, Space.Self);
         }
     }
 
