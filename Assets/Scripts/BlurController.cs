@@ -75,8 +75,7 @@ public class BlurController : MonoBehaviour
                     if (clickLoopSource.isPlaying)
                         clickLoopSource.Stop();
 
-                    if (shutterClip != null && oneShotSource != null)
-                        oneShotSource.PlayOneShot(shutterClip);
+                    // Do NOT play shutterClip here
                 }
             }
             else
@@ -95,8 +94,9 @@ public class BlurController : MonoBehaviour
             }
         }
 
-        // Check if we just passed below 0.3
-        if (previousWeight > 0.3f && currentWeight <= 0.3f)
+        // Check if we crossed the 0.3 threshold in either direction (excluding 0)
+        if ((previousWeight > 0.3f && currentWeight <= 0.3f && currentWeight > 0f) ||
+            (previousWeight < 0.3f && currentWeight >= 0.3f))
         {
             if (shutterClip != null && oneShotSource != null)
                 oneShotSource.PlayOneShot(shutterClip);
