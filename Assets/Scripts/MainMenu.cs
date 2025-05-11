@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -34,6 +35,7 @@ public class MainMenu : MonoBehaviour
     {
         Vector2 scrollVal = context.ReadValue<Vector2>();
         float verticalScroll = scrollVal.y;
+        _animator.enabled = true;
 
         if (verticalScroll > 0f)
         {
@@ -47,8 +49,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        Debug.Log("Played");
-        _menu.SetActive(false);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()
