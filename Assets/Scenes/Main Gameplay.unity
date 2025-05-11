@@ -5078,6 +5078,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6573967467329793559, guid: 0c2c07118daa614468bb8fe41e32b79b, type: 3}
+      propertyPath: footstepsSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 557a565eda73e884594868c5b4957ab3, type: 3}
+    - target: {fileID: 6573967467329793559, guid: 0c2c07118daa614468bb8fe41e32b79b, type: 3}
       propertyPath: '_endPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 0}
