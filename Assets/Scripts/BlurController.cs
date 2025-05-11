@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -11,67 +11,100 @@ public class BlurController : MonoBehaviour
     public float riseDuration = 10f;
     public float pauseAfterZero = 3f;
 
-    [Header("Focus Oscillation Settings")]
-    public float oscillationSpeed = 2f; // Time (in seconds) for full up-down cycle
+    [Header("Space Holding Settings")]
+    public float spaceDecaySpeed = 0.5f;
+
+    [Header("Movement Settings")]
+    public Transform playerTransform;
+    public float movementSpeedMultiplier = 2f;
+    public float dashSpeedMultiplier = 3f;
+    public float movementThreshold = 0.01f;
 
     [Header("Fade Image Settings")]
     public CanvasGroup fadeImage;
     public float fadeSpeed = 2f;
 
-    private float currentWeight = 0f;
-    private float pauseTimer = 0f;
+    [Header("Audio Settings")]
+    public AudioSource clickLoopSource;
+    public AudioSource oneShotSource;
+    public AudioClip clickLoopClip;
+    public AudioClip shutterClip;
 
-    private bool isOscillating = false;
-    private float oscillationTimer = 0f;
-    private float oscillationStartOffset = 0f;
-    private bool wasHoldingSpaceLastFrame = false;
+    private float currentWeight = 0f;
+    private float previousWeight = 0f;
+    private float pauseTimer = 0f;
+    private Vector3 lastPlayerPosition;
+
+    void Start()
+    {
+        lastPlayerPosition = playerTransform.position;
+    }
 
     void Update()
     {
         bool isHoldingSpace = Input.GetKey(KeyCode.Space);
+        bool isDashing = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+
+        Vector3 currentPos = playerTransform.position;
+        float movedDistance = Vector3.Distance(currentPos, lastPlayerPosition);
+        bool isMoving = movedDistance > movementThreshold;
+        lastPlayerPosition = currentPos;
 
         if (pauseTimer > 0f)
         {
             pauseTimer -= Time.deltaTime;
         }
-        else if (isHoldingSpace)
-        {
-            // Detect fresh press of space
-            if (!wasHoldingSpaceLastFrame)
-            {
-                // Calculate starting point of oscillation based on current weight
-                float t = Mathf.Clamp01(currentWeight);
-                // Avoid domain error in Asin by clamping within [-1, 1]
-                float normalized = Mathf.Clamp(2f * t - 1f, -1f, 1f);
-                oscillationStartOffset = Mathf.Asin(normalized) / Mathf.PI + 0.5f;
-                oscillationTimer = oscillationStartOffset * oscillationSpeed;
-            }
-
-            isOscillating = true;
-            oscillationTimer += Time.deltaTime;
-            currentWeight = Mathf.PingPong(oscillationTimer / oscillationSpeed, 1f);
-        }
         else
         {
-            isOscillating = false;
-            oscillationTimer = 0f;
+            if (isHoldingSpace && !isMoving)
+            {
+                currentWeight = Mathf.MoveTowards(currentWeight, 0f, spaceDecaySpeed * Time.deltaTime);
 
-            float riseSpeed = 1f / riseDuration;
-            currentWeight += riseSpeed * Time.deltaTime;
-            currentWeight = Mathf.Clamp01(currentWeight);
+                if (!clickLoopSource.isPlaying && clickLoopClip != null)
+                {
+                    clickLoopSource.clip = clickLoopClip;
+                    clickLoopSource.loop = true;
+                    clickLoopSource.Play();
+                }
+
+                if (currentWeight <= 0f)
+                {
+                    currentWeight = 0f;
+                    pauseTimer = pauseAfterZero;
+
+                    if (clickLoopSource.isPlaying)
+                        clickLoopSource.Stop();
+
+                    if (shutterClip != null && oneShotSource != null)
+                        oneShotSource.PlayOneShot(shutterClip);
+                }
+            }
+            else
+            {
+                if (clickLoopSource.isPlaying)
+                    clickLoopSource.Stop();
+
+                float riseSpeed = 1f / riseDuration;
+                if (isMoving)
+                    riseSpeed *= movementSpeedMultiplier;
+                if (isDashing)
+                    riseSpeed *= dashSpeedMultiplier;
+
+                currentWeight += riseSpeed * Time.deltaTime;
+                currentWeight = Mathf.Clamp01(currentWeight);
+            }
         }
 
-        // If weight hits 0, trigger pause
-        if (currentWeight <= 0f && isOscillating)
+        // Check if we just passed below 0.3
+        if (previousWeight > 0.3f && currentWeight <= 0.3f)
         {
-            currentWeight = 0f;
-            pauseTimer = pauseAfterZero;
+            if (shutterClip != null && oneShotSource != null)
+                oneShotSource.PlayOneShot(shutterClip);
         }
 
+        previousWeight = currentWeight;
         volume.weight = currentWeight;
-        wasHoldingSpaceLastFrame = isHoldingSpace;
 
-        // Fade image based on weight threshold
         if (fadeImage != null)
         {
             float targetAlpha = currentWeight < 0.3f ? 1f : 0f;
