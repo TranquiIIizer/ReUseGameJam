@@ -13,7 +13,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody _rb;
 
-    // Nowe elementy do dŸwiêku kroków
+    [Header("Z Position Clamp")]
+    [SerializeField] private float minZ = -5f;
+    [SerializeField] private float maxZ = 5f;
+
+    [Header("Footstep Sound")]
     [SerializeField] private AudioClip footstepsSound;
     private AudioSource _footstepsSource;
 
@@ -22,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _moveSpeed = _baseSpeed;
 
-        // Inicjalizacja AudioSource do kroków
         _footstepsSource = gameObject.AddComponent<AudioSource>();
         _footstepsSource.clip = footstepsSound;
         _footstepsSource.loop = true;
@@ -38,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dashed());
         }
 
-        // Logika odtwarzania dŸwiêku kroków
         bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
 
         if (isMoving && !_footstepsSource.isPlaying)
@@ -64,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(horizontal, 0f, vertical) * _moveSpeed;
-        _rb.linearVelocity = movement;
+        Vector3 newPosition = _rb.position + movement * Time.fixedDeltaTime;
+
+        // Clamp the Z position
+        newPosition.z = Mathf.Clamp(newPosition.z, minZ, maxZ);
+
+        _rb.MovePosition(newPosition);
     }
 }
