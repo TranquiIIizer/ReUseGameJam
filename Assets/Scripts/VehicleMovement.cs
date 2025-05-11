@@ -10,6 +10,11 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] private Transform _groundObject;
     public float movementSpeed;
 
+    private void Start()
+    {
+        Destroy(gameObject, 30f);
+    }
+
     private void FixedUpdate()
     {
         MoveForward();

@@ -118,6 +118,23 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &480637940 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8803932641731929667, guid: f2e8066c52da8ba4684fa1d389ebbbf0, type: 3}
+  m_PrefabInstance: {fileID: 4959644868276444861}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &480637942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480637940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a8a97012933634bbc165601679acc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4959644868276444861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,6 +143,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1845545894107151892, guid: f2e8066c52da8ba4684fa1d389ebbbf0, type: 3}
+      propertyPath: m_text
+      value: 00:00
+      objectReference: {fileID: 0}
     - target: {fileID: 2511477837773732889, guid: f2e8066c52da8ba4684fa1d389ebbbf0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.1069975
@@ -172,12 +193,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5306174890764700148, guid: f2e8066c52da8ba4684fa1d389ebbbf0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8803932641731929667, guid: f2e8066c52da8ba4684fa1d389ebbbf0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 480637942}
   m_SourcePrefab: {fileID: 100100000, guid: f2e8066c52da8ba4684fa1d389ebbbf0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

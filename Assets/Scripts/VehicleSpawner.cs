@@ -53,6 +53,6 @@ public class VehicleSpawner : MonoBehaviour
 
     private float IncreaseVehicleSpeed()
     {
-        return _speedModifier += (_spawnCount)/10;
+        return _speedModifier <= 2.5 ? _speedModifier += (_spawnCount / 10) : _speedModifier;
     }
 }
