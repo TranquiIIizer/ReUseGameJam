@@ -8,11 +8,12 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] private float _checkRange;
     [SerializeField] private LayerMask _ground;
     [SerializeField] private Transform _groundObject;
+    [SerializeField] public float destroyTime = 30f;
     public float movementSpeed;
 
     private void Start()
     {
-        Destroy(gameObject, 30f);
+        Destroy(gameObject, destroyTime);
     }
 
     private void FixedUpdate()
