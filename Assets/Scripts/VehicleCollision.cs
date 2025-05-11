@@ -5,15 +5,14 @@ public class VehicleCollision : MonoBehaviour
     [SerializeField] private AudioClip carHitSound;
     private AudioSource _audioSource;
 
-    [SerializeField] private AudioClip carHitSound;
-    private AudioSource _audioSource;
+    private bool _hasCrashed = false;
 
     private void Start()
     {
         _audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource.volume = 0.6f;
         _audioSource.playOnAwake = false;
         _audioSource.loop = false;
-        _audioSource.volume = 0.6f;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -25,12 +24,7 @@ public class VehicleCollision : MonoBehaviour
             _hasCrashed = true;
             _audioSource.PlayOneShot(carHitSound);
 
-    public void CollidedWithPlayer()
-    {
-        if (carHitSound != null && _audioSource != null)
-        {
-            _audioSource.PlayOneShot(carHitSound);
-        }
+            CrashHandler.TriggerCrash();
 
             Debug.Log("Śmierć");
         }
