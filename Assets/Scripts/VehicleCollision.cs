@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class VehicleCollision : MonoBehaviour
 {
-    private Collider _selfCollider;
+    [SerializeField] private AudioClip carHitSound;
+    private AudioSource _audioSource;
 
     [SerializeField] private AudioClip carHitSound;
     private AudioSource _audioSource;
@@ -17,11 +18,12 @@ public class VehicleCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (_hasCrashed) return;
+
         if (collision.gameObject.GetComponent<Player>())
         {
-            CollidedWithPlayer();
-        }
-    }
+            _hasCrashed = true;
+            _audioSource.PlayOneShot(carHitSound);
 
     public void CollidedWithPlayer()
     {
@@ -30,6 +32,7 @@ public class VehicleCollision : MonoBehaviour
             _audioSource.PlayOneShot(carHitSound);
         }
 
-        Debug.Log("Śmierć");
+            Debug.Log("Śmierć");
+        }
     }
 }

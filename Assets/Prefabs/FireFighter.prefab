@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 4738163272875214809}
   - component: {fileID: 3015299509504075195}
   - component: {fileID: 3700404912744108982}
+  - component: {fileID: -3308397458727191757}
   m_Layer: 0
   m_Name: FireFighter
   m_TagString: Untagged
