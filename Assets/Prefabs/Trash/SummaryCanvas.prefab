@@ -478,7 +478,7 @@ RectTransform:
   m_GameObject: {fileID: 2226573754708934715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.20125, y: 1.20125, z: 1.20125}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7177564648084993977}
@@ -488,7 +488,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8217960325367872130
 Canvas:
   m_ObjectHideFlags: 0
@@ -861,7 +861,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6734476451032536546}
-  - component: {fileID: 779590273171181603}
   m_Layer: 5
   m_Name: Photo Container
   m_TagString: Untagged
@@ -912,30 +911,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 0, y: 1000}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &779590273171181603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3620758754660192834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 20
-    m_Right: 20
-    m_Top: 20
-    m_Bottom: 20
-  m_ChildAlignment: 1
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 130, y: 95}
-  m_Spacing: {x: 10, y: 50}
-  m_Constraint: 1
-  m_ConstraintCount: 2
 --- !u!1 &4000696459342141661
 GameObject:
   m_ObjectHideFlags: 0
