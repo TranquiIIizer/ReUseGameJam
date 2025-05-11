@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 6826274097360591426}
   - component: {fileID: 2470674147890976507}
   - component: {fileID: 2059194278445257043}
+  - component: {fileID: 1750146665415145562}
   m_Layer: 0
   m_Name: Tape
   m_TagString: Untagged
@@ -213,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -241,7 +242,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d50c2c0de0ce94c41a76d6fab3fe4378, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -251,6 +252,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1750146665415145562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2639572668623212554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a135e399afd034e42bc8ca125bfd3cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playButton: {fileID: 702797730192895144}
+  _quitButton: {fileID: 8155424683370702155}
 --- !u!1 &3229188553748616462
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -576,9 +591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d931ea96a4fd26f4c8ab4cc2c742c823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playButton: {fileID: 702797730192895144}
-  _quitButton: {fileID: 8155424683370702155}
   _menu: {fileID: 528989387313617680}
+  _animator: {fileID: 2059194278445257043}
   _openMenuAction:
     m_Name: Open Menu
     m_Type: 0
@@ -594,6 +608,23 @@ MonoBehaviour:
       m_Processors: 
       m_Groups: 
       m_Action: Open Menu
+      m_Flags: 0
+    m_Flags: 0
+  _scrollAction:
+    m_Name: Scroll
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c8b0c0b5-9ac0-405b-8803-c0fa92bc36ee
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 82e68e56-3da6-4bf0-ad5b-f46f4fb34c54
+      m_Path: <Mouse>/scroll
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Scroll
       m_Flags: 0
     m_Flags: 0
 --- !u!1 &6805622973921096290
