@@ -1,21 +1,32 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class VehicleCollision : MonoBehaviour
 {
-    private Collider _selfCollider;
+    [SerializeField] private AudioClip carHitSound;
+    private AudioSource _audioSource;
+
+    private bool _hasCrashed = false;
+
+    private void Start()
+    {
+        _audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource.volume = 0.6f;
+        _audioSource.playOnAwake = false;
+        _audioSource.loop = false;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (_hasCrashed) return;
+
         if (collision.gameObject.GetComponent<Player>())
         {
-            CollidedWithPlayer();
+            _hasCrashed = true;
+            _audioSource.PlayOneShot(carHitSound);
+
+            CrashHandler.TriggerCrash();
+
+            Debug.Log("Śmierć");
         }
-    }
-
-    public void CollidedWithPlayer()
-    {
-        //Audio poniżej
-
-        Debug.Log("Śmierć");
     }
 }

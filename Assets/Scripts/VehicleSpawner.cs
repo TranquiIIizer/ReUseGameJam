@@ -53,6 +53,7 @@ public class VehicleSpawner : MonoBehaviour
 
     private float IncreaseVehicleSpeed()
     {
+        Debug.Log(_speedModifier <= 2.5 ? _speedModifier += (_spawnCount / 10) : _speedModifier);
         return _speedModifier <= 2.5 ? _speedModifier += (_spawnCount / 10) : _speedModifier;
     }
 }
