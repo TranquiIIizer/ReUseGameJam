@@ -13,10 +13,15 @@ public class CameraController : MonoBehaviour
 
     [Header("Photo UI and Effects")]
     [SerializeField] private CanvasGroup photoReadyIndicator; // fades from 0 to 1 gradually
-    [SerializeField] private float photoReadyFadeSpeed = 2f;  // speed of fade in/out
-    [SerializeField] private CanvasGroup photoCanBeTakenIcon; // turns on instantly when ready
+    [SerializeField] private float photoReadyFadeSpeed = 2f;
+    [SerializeField] private CanvasGroup photoCanBeTakenIcon; // shows when fully ready
     [SerializeField] private CanvasGroup flashImage;
     [SerializeField] private float flashFadeSpeed = 3f;
+
+    [Header("Black Overlay Settings")]
+    [SerializeField] private CanvasGroup blackScreenOverlay; // fades based on player movement
+    [SerializeField] private float maxBlackOpacity = 0.2f;
+    [SerializeField] private float blackFadeSpeed = 2f;
 
     [Header("Audio")]
     [SerializeField] private AudioSource photoSound;
@@ -98,6 +103,14 @@ public class CameraController : MonoBehaviour
         if (flashImage != null && flashImage.alpha > 0f)
         {
             flashImage.alpha = Mathf.MoveTowards(flashImage.alpha, 0f, flashFadeSpeed * Time.deltaTime);
+        }
+
+        // Black screen overlay fades out as player stands still
+        if (blackScreenOverlay != null)
+        {
+            float progress = Mathf.Clamp01(_timeSinceLastMovement / secondsToPhotoShot);
+            float targetBlackAlpha = Mathf.Lerp(maxBlackOpacity, 0f, progress);
+            blackScreenOverlay.alpha = Mathf.MoveTowards(blackScreenOverlay.alpha, targetBlackAlpha, blackFadeSpeed * Time.deltaTime);
         }
     }
 

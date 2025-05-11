@@ -550,8 +550,9 @@ GameObject:
   - component: {fileID: 149699392}
   - component: {fileID: 149699394}
   - component: {fileID: 149699393}
+  - component: {fileID: 149699395}
   m_Layer: 5
-  m_Name: Image
+  m_Name: NotReadyBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,7 +575,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &149699393
 MonoBehaviour:
@@ -589,7 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.101960786}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -614,6 +615,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149699391}
   m_CullTransparentMesh: 1
+--- !u!225 &149699395
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149699391}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &153857019
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +640,7 @@ GameObject:
   - component: {fileID: 153857021}
   - component: {fileID: 153857020}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: border back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4053,7 +4066,7 @@ GameObject:
   - component: {fileID: 1588037788}
   - component: {fileID: 1588037787}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: border front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5535,9 +5548,17 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3355835040350733500, guid: 0c2c07118daa614468bb8fe41e32b79b, type: 3}
+      propertyPath: maxBlackOpacity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355835040350733500, guid: 0c2c07118daa614468bb8fe41e32b79b, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1729683648}
+    - target: {fileID: 3355835040350733500, guid: 0c2c07118daa614468bb8fe41e32b79b, type: 3}
+      propertyPath: blackScreenOverlay
+      value: 
+      objectReference: {fileID: 149699395}
     - target: {fileID: 3355835040350733500, guid: 0c2c07118daa614468bb8fe41e32b79b, type: 3}
       propertyPath: photoCanBeTakenIcon
       value: 
