@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vehiclePrefabs:
-  - {fileID: 1051803183207956305, guid: e47e67f960dea2646bd3580535186b4d, type: 3}
-  - {fileID: 6695197981177733444, guid: c44bed55f816b434790872c270ae6ce1, type: 3}
+  - {fileID: 8841183245917831584, guid: 7c35ee1a96c201943bdbe7c0bdc6f00d, type: 3}
+  - {fileID: 7003045698569836519, guid: 0fd3bec47699d1f498c777d2609129f3, type: 3}
   _spawnPoints:
   - {fileID: 8358732168334518765}
   - {fileID: 6369575674479441780}
