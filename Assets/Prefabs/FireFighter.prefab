@@ -141,6 +141,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _groundObject: {fileID: 0}
+<<<<<<< Updated upstream
+  movementSpeed: 10
+=======
+  destroyTime: 30
   movementSpeed: 4
 --- !u!114 &3700404912744108982
 MonoBehaviour:
@@ -154,6 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aae07e7bfb42b24fa0ff14f9025e781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carHitSound: {fileID: 8300000, guid: 6321ecabb91bf66478f1a2596b41538d, type: 3}
+>>>>>>> Stashed changes
 --- !u!1001 &6920716366286492636
 PrefabInstance:
   m_ObjectHideFlags: 0
