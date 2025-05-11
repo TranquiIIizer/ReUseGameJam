@@ -2497,7 +2497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 722, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 452.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &898231863
@@ -6023,6 +6023,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4853720378604876487, guid: 89a56dcb6df26c9429566c4e2135c7da, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7401276615103014104, guid: 89a56dcb6df26c9429566c4e2135c7da, type: 3}
       propertyPath: tracker
       value: 
@@ -6375,7 +6379,9 @@ PrefabInstance:
       value: CameraCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7667025954714379522, guid: 9d14ccf238817de498d3c2a5b67318a3, type: 3}
+    - {fileID: 5696687469203392394, guid: 9d14ccf238817de498d3c2a5b67318a3, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5945925585331967006, guid: 9d14ccf238817de498d3c2a5b67318a3, type: 3}
       insertIndex: -1
