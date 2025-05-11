@@ -13,10 +13,20 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody _rb;
 
+    // Nowe elementy do dŸwiêku kroków
+    [SerializeField] private AudioClip footstepsSound;
+    private AudioSource _footstepsSource;
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _moveSpeed = _baseSpeed;
+
+        // Inicjalizacja AudioSource do kroków
+        _footstepsSource = gameObject.AddComponent<AudioSource>();
+        _footstepsSource.clip = footstepsSound;
+        _footstepsSource.loop = true;
+        _footstepsSource.playOnAwake = false;
     }
 
     private void Update()
@@ -26,6 +36,18 @@ public class PlayerMovement : MonoBehaviour
         {
             _timer = _dashCooldown;
             StartCoroutine(Dashed());
+        }
+
+        // Logika odtwarzania dŸwiêku kroków
+        bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
+
+        if (isMoving && !_footstepsSource.isPlaying)
+        {
+            _footstepsSource.Play();
+        }
+        else if (!isMoving && _footstepsSource.isPlaying)
+        {
+            _footstepsSource.Stop();
         }
     }
 
