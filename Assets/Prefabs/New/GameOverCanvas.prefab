@@ -366,9 +366,9 @@ MonoBehaviour:
   timeSurvivedText: {fileID: 4539434246608791558}
   moneyEarnedText: {fileID: 1845408900595294027}
   photosTookText: {fileID: 7723114999349657717}
-  timeSurvivedValue: 123.45
-  moneyEarnedValue: 250
-  photosTookValue: 17
+  timeSurvivedValue: 0
+  moneyEarnedValue: 0
+  photosTookValue: 0
   tracker: {fileID: 0}
   timeTypingSpeed: 0.05
   moneyTypingSpeed: 0.03

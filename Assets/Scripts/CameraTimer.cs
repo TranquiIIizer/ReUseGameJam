@@ -9,9 +9,11 @@ public class CameraTimer : MonoBehaviour
     private float timer = 90f;
     private int lastDisplayedTime;
     public static Action<int> TimeLeftEvent;
+    public GameObject GameOverPanel;
 
     void Start()
     {
+        VehicleCollision.GameEnded += EndGame;
         lastDisplayedTime = Mathf.CeilToInt(timer);
         timerText.text = lastDisplayedTime.ToString();
     }
@@ -33,8 +35,13 @@ public class CameraTimer : MonoBehaviour
         else if (lastDisplayedTime != 0)
         {
             lastDisplayedTime = 0;
-            timerText.text = "Czas minął!";
+            GameOverPanel.SetActive(true);
         }
+    }
+
+    private void EndGame(bool ended)
+    {
+        GameOverPanel?.SetActive(ended);
     }
 }
 

@@ -60,10 +60,12 @@ public class CrashHandler : MonoBehaviour
         }
 
         // Slow down game time
+        /*
         if (Time.timeScale > 0f)
         {
             Time.timeScale = Mathf.MoveTowards(Time.timeScale, 0f, timeSlowSpeed * Time.unscaledDeltaTime);
         }
+        */
 
         // Fade out all audio
         foreach (AudioSource source in allAudioSources)
