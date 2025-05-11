@@ -152,7 +152,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mouseSensitivity: 2
   secondsToPhotoShot: 3
-  _playerTransform: {fileID: 8707322978165647741}
+  blurVolume: {fileID: 0}
+  playerTransform: {fileID: 8707322978165647741}
+  photoReadyIndicator: {fileID: 0}
+  photoReadyFadeSpeed: 2
+  photoCanBeTakenIcon: {fileID: 0}
+  flashImage: {fileID: 0}
+  flashFadeSpeed: 2
+  photoSound: {fileID: 0}
 --- !u!1 &5487330043019041702
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,10 +176,9 @@ GameObject:
   - component: {fileID: 2871425028244502936}
   - component: {fileID: 572654471037462218}
   - component: {fileID: 8701132760150566300}
-  - component: {fileID: 323720905332517953}
   m_Layer: 0
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,7 +214,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5487330043019041702}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -285,6 +291,7 @@ MonoBehaviour:
   _dashCooldown: 0.75
   _dashDuration: 0.3
   _baseSpeed: 2
+  footstepsSound: {fileID: 8300000, guid: 557a565eda73e884594868c5b4957ab3, type: 3}
 --- !u!54 &2871425028244502936
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -338,27 +345,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _photoDisplayArea: {fileID: 0}
   _cameraUI: {fileID: 0}
-  _photoContainer: {fileID: 0}
-  images: []
---- !u!114 &323720905332517953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487330043019041702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53f6630a1672fa64e94d0b1e2de4b8a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _summaryCanvas: {fileID: 0}
-  _summaryOpened:
-    m_Name: Summary Opened
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: e037d0ca-e605-4e3a-ba18-04eabce9f4c0
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0

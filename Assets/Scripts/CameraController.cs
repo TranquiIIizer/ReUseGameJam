@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         _lookPos = Vector2.zero;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         _lastPlayerPosition = playerTransform.position;
     }
 
