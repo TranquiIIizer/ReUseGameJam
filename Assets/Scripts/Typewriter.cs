@@ -24,21 +24,21 @@ public class SequentialTypewriter : MonoBehaviour
     private void Start()
     {
         timeSurvivedValue = tracker.survivedTime;
-        moneyEarnedValue = tracker.moneyEarned;
+        moneyEarnedValue = tracker.photosTook * 15;
         photosTookValue = tracker.photosTook;
         StartCoroutine(PlayAllTypewriters());
     }
 
     IEnumerator PlayAllTypewriters()
     {
-        yield return StartCoroutine(TypeTimeSurvived());
+        //yield return StartCoroutine(TypeTimeSurvived());
         yield return StartCoroutine(TypeMoneyEarned());
         yield return StartCoroutine(TypePhotosTook());
     }
 
     IEnumerator TypeTimeSurvived()
     {
-        string label = "Time to win:";
+        string label = "Seconds remaining:";
         string dots = new string('.', 10);
         string value = $"{timeSurvivedValue}s";
         string fullText = $"{label}{dots}{value}";

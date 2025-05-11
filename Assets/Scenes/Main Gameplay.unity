@@ -5939,6 +5939,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89a56dcb6df26c9429566c4e2135c7da, type: 3}
+--- !u!1 &29633787267874442 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7520961818388220306, guid: 89a56dcb6df26c9429566c4e2135c7da, type: 3}
+  m_PrefabInstance: {fileID: 29633787267874441}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1949644244441645406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6024,6 +6029,10 @@ PrefabInstance:
       propertyPath: _summaryCanvas
       value: 
       objectReference: {fileID: 1290278995}
+    - target: {fileID: 572654471037462218, guid: 0c2c07118daa614468bb8fe41e32b79b, type: 3}
+      propertyPath: GameOverUI
+      value: 
+      objectReference: {fileID: 29633787267874442}
     - target: {fileID: 3355835040350733500, guid: 0c2c07118daa614468bb8fe41e32b79b, type: 3}
       propertyPath: blurVolume
       value: 
