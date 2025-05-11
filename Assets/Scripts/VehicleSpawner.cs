@@ -12,7 +12,7 @@ public class VehicleSpawner : MonoBehaviour
     [SerializeField] private float _secondsBetweenEachSpawn;
     [SerializeField] private float _spawnRateModifier;
     [Header("A value which vehicle movement speed is multiplied by")]
-    [SerializeField] private float _speedModifier;
+    private float _speedModifier = 1;
 
     private void Start()
     {
@@ -28,7 +28,12 @@ public class VehicleSpawner : MonoBehaviour
             int vehicleIndex = Random.Range(0, _vehiclePrefabs.Count);
             int spawnPointIndex = Random.Range(0, _spawnPoints.Count);
 
-            GameObject vehicle = Instantiate(_vehiclePrefabs[vehicleIndex], _spawnPoints[spawnPointIndex], true);
+
+            Quaternion spawnRotation = _spawnPoints[spawnPointIndex].rotation;
+            spawnRotation = Quaternion.Euler(110f, spawnRotation.eulerAngles.y, spawnRotation.eulerAngles.z);
+
+            GameObject vehicle = Instantiate(_vehiclePrefabs[vehicleIndex], _spawnPoints[spawnPointIndex].position, spawnRotation);
+
             vehicle.GetComponent<VehicleMovement>().movementSpeed *= _speedModifier;
 
             _spawnCount++;
@@ -43,11 +48,11 @@ public class VehicleSpawner : MonoBehaviour
 
     private float IncreaseSpawnRate()
     {
-        return _secondsBetweenEachSpawn -= _spawnCount;
+        return _secondsBetweenEachSpawn > 5 ? _secondsBetweenEachSpawn -= (float)_spawnCount/10 : _secondsBetweenEachSpawn;
     }
 
     private float IncreaseVehicleSpeed()
     {
-        return _speedModifier += (_spawnCount*2)/10;
+        return _speedModifier += (_spawnCount)/10;
     }
 }
