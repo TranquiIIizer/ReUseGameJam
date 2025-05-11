@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ public class PhotosCounter : MonoBehaviour
 {
     private TextMeshProUGUI _photosCounter;
     private int _pictureCount;
+
+    public static Action<int> PhotoTakenEvent;
     private void Start()
     {
         _photosCounter = GetComponent<TextMeshProUGUI>();
@@ -15,6 +18,7 @@ public class PhotosCounter : MonoBehaviour
     {
         _pictureCount++;
         _photosCounter.text = SetCounterDisplay(_pictureCount);
+        PhotoTakenEvent?.Invoke(1);
     }
 
     private string SetCounterDisplay(int pictureCount)

@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class VehicleCollision : MonoBehaviour
 {
     [SerializeField] private AudioClip carHitSound;
     private AudioSource _audioSource;
+    public static Action<bool> GameEnded;
+    public GameObject gameOverPanel;
 
     private bool _hasCrashed = false;
 
@@ -25,8 +28,7 @@ public class VehicleCollision : MonoBehaviour
             _audioSource.PlayOneShot(carHitSound);
 
             CrashHandler.TriggerCrash();
-
-            Debug.Log("Śmierć");
+            GameEnded?.Invoke(true);
         }
     }
 }
